@@ -1,5 +1,12 @@
 // write your code here
 
+
+// All normal goals are met then pushed
+// The first strech goal has been met and not pushed
+
+
+
+
 const ramenMenu = document.querySelector(`#ramen-menu`);
 //const ramenDetailSpot = document.querySelector(`#ramen-detail`);
 const ramenDetailImg = document.querySelector(`.detail-image`);
@@ -10,10 +17,13 @@ const ramenRating = document.querySelector(`#rating-display`);
 
 const newRamenForm = document.querySelector(`#new-ramen`);
 
+const editRamenForm = document.querySelector(`#edit-ramen`);
+
 fetch(`http://localhost:3000/ramens`)
 .then(resp => resp.json())
 .then(ramenList => {
-    
+    displayRamen(ramenList[0]) //attempt to display first on launch
+
     ramenList.forEach(ramen => {
         renderRamen(ramen)
         
@@ -28,8 +38,7 @@ fetch(`http://localhost:3000/ramens`)
 newRamenForm.addEventListener('submit', (event)=>{
     event.preventDefault();
 
-    // const firstName = event.target.firstName.value;
-    // const lastName = event.target.lastName.value;
+   
 
     const newRamenObj ={
 
@@ -45,9 +54,25 @@ newRamenForm.addEventListener('submit', (event)=>{
 
     renderRamen(newRamenObj)
 
+    event.target.reset(); //attempt to clear out form for new Ramen submissions (Seems to work without drawbacks)
 
 })
 
+
+
+
+
+function displayRamen(ramen){
+    ramenDetailImg.src = ramen.image;
+    ramenDetailName.textContent = ramen.name;
+    ramenDetailRestaurant.textContent = ramen.restaurant;
+    ramenComment.textContent = ramen.comment;
+    ramenRating.textContent = ramen.rating;
+
+    console.log(`I was clicked`);
+
+
+}
 
 
 
@@ -60,13 +85,14 @@ function renderRamen(ramen){
     
     ramenImage.addEventListener('click',(event)=>{
 
-        ramenDetailImg.src = ramen.image;
-        ramenDetailName.textContent = ramen.name;
-        ramenDetailRestaurant.textContent = ramen.restaurant;
-        ramenComment.textContent = ramen.comment;
-        ramenRating.textContent = ramen.rating;
+            displayRamen(ramen)
+        // ramenDetailImg.src = ramen.image;
+        // ramenDetailName.textContent = ramen.name;
+        // ramenDetailRestaurant.textContent = ramen.restaurant;
+        // ramenComment.textContent = ramen.comment;
+        // ramenRating.textContent = ramen.rating;
 
-        console.log(`I was clicked`);
+        // console.log(`I was clicked`);
 
     });
     
@@ -74,3 +100,36 @@ function renderRamen(ramen){
     
 
 }
+
+
+
+//update a ramen
+
+
+// editRamenForm.addEventListener('submit', (event)=>{
+
+// //watever ramen is featured
+
+// //grab the raing value and the comment value
+
+// // update the values with the ones from the form 
+
+// //re-render the ramen? or redisplay??
+
+
+
+
+// })
+
+
+
+
+
+
+
+
+
+
+
+
+
