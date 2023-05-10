@@ -76,31 +76,13 @@ function displayRamen(ramen){
 
 
 
-        //update a ramen
-
-
-    editRamenForm.addEventListener('submit', (event)=>{
-
-        event.preventDefault();
-
-        ramenRating.textContent = event.target[`new-rating`].value
-        ramenComment.textContent = event.target[`new-comment`].value
-
-
-      //  event.target.reset(); //resets the edit form  also clears other stuff?
-    //watever ramen is featured
-    
-    //grab the raing value and the comment value
-    
-    // update the values with the ones from the form 
-    
-    //re-render the ramen? or redisplay??
-    
-        //  "rating": event.target.rating.value,
-        //     "comment": event.target[`new-comment`].value
-    
-    
-    })
+        //update a ramen was here but it has some odd errors moving it out fixed it 
+         //editRamenForm.addEventListener('submit', (event)=>{
+         // event.preventDefault();
+         //ramenRating.textContent = event.target[`new-rating`].value
+         //ramenComment.textContent = event.target[`new-comment`].value
+         // //event.target.reset(); //resets the edit form  also clears other stuff?
+        // })
     
 
 
@@ -142,9 +124,20 @@ function renderRamen(ramen){
 
 
 
+//edit Ramen but does not persit and only is changing the text displayed not the objects actual properties
+
+editRamenForm.addEventListener('submit', (event)=>{
+
+    event.preventDefault();
+
+    ramenRating.textContent = event.target[`new-rating`].value
+    ramenComment.textContent = event.target[`new-comment`].value
 
 
+    event.target.reset(); //seems to work
 
+
+})
 
 
 
